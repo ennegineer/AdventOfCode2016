@@ -15,3 +15,23 @@
 # If facing West, L move y negative the value; R move y positive the value
     # If L, dir = South; if R, dir = North
 
+# Let's do the thing!
+import csv
+import pandas as pd
+
+data = []
+with open('./directions.txt', 'r') as file:
+    csvreader = csv.reader(file, delimiter=',')
+
+    for row in csvreader:
+        data = row
+
+df = pd.DataFrame(data, columns=['Input'])
+
+df['Movement'] = df.Input.str[1:]
+df['Direction'] = df.Input.str[0]
+# print(df['Input'].str[0])
+
+# print(data)
+print(df.head())
+
