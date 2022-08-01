@@ -109,12 +109,104 @@ def PartOne():
     print(answer)
     print(x+y)
 
-PartOne()
 
-# Results
-# x1 = 0, y1 = 0
-# x2 = -491, y1 = -114
+def PartTwo():
+    test = ['R8', 'R4', 'R4', 'R8']
+    # For each 'if', capture coords in a list. 
+    # Then check at each additional row to see if the last coordinates match any others
 
-# |x1 - x2| + |y1 - y2|
+    # Starting coords: (0,0)
+    x = 0
+    y = 0
+    # Starting dir: facing North
+    dir = 'North'
 
-# 605 is too high!
+    # Create a coord list
+    coords = []
+
+    for row in test:
+    # If facing North, L move x negative the value; R move x positive the value
+        # If L, dir = West; if R, dir = East
+        if dir == 'North':
+            if row[0] == 'L':
+                x = x - int(row[1:])
+                dir = 'West'
+
+            elif row[0] == 'R':
+                x = x + int(row[1:])
+                dir = 'East'
+
+    # If facing East, L move y positive the value; R move y negative the value
+        # If L, dir = North; if R, dir = South
+        elif dir == 'East':
+            if row[0] == 'L':
+                y = y + int(row[1:])
+                dir = 'North'
+
+            elif row[0] == 'R':
+                y = y - int(row[1:])
+                dir = 'South'
+
+    # If facing South, L move x positive the value; R move x negative the value
+        # If L, dir = East; if R, dir = West
+        elif dir == 'South':
+            if row[0] == 'L':
+                x = x + int(row[1:])
+                dir = 'East'
+
+            elif row[0] == 'R':
+                x = x - int(row[1:])
+                dir = 'West'
+
+    # If facing West, L move y negative the value; R move y positive the value
+        # If L, dir = South; if R, dir = North
+        elif dir == 'West':
+            if row[0] == 'L':
+                y = y - int(row[1:])
+                dir = 'South'
+
+            elif row[0] == 'R':
+                y = y + int(row[1:])
+                dir = 'North'
+    # Add coordinates to list
+        newcoord = str(x)+"-"+str(y)
+        coords.append(newcoord)
+
+    # Check if coords already existed in the list
+        if coords.count(newcoord) == 2:
+            print(newcoord)
+            print(coords)
+            print((abs(0 - x)) + (abs(0 - y)))
+            break
+        else:
+            pass
+
+    print(f'coordinates: ({x}, {y}) direction: {dir}')
+
+    answer = (abs(0 - x)) + (abs(0 - y))
+    print(answer)
+    print(x+y)
+
+# 277 is too high
+# it's not 12 or 4 or 2
+PartTwo()
+
+def Test():
+    # input = ['R8', 'R4', 'R4', 'R8']
+    directions = []
+    for row in df['Input']:
+        # look for first input that exists in the list twice
+        # Add coordinates to list
+        currentInput = row
+        directions.append(currentInput)
+
+    # Check if coords already existed in the list
+        if directions.count(currentInput) == 2:
+            print(currentInput)
+            print(directions)
+            # print((abs(0 - x)) + (abs(0 - y)))
+            break
+        else:
+            pass
+
+# Test()
