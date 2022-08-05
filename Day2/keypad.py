@@ -4,7 +4,6 @@
 # 7 8 9
 
 import csv
-from re import A
 
 data = []
 with open('./directions.txt', 'r') as file:
